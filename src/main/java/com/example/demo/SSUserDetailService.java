@@ -1,7 +1,7 @@
 package com.example.demo;
 
-import com.example.demo.Role;
 import com.example.demo.User;
+import com.example.demo.Role;
 import com.example.demo.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -24,21 +24,16 @@ public class SSUserDetailService implements UserDetailsService {
         this.userRepository=userRepository;
     }
 
+
+
+
+
+
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-       /* try {
-            User user = userRepository.findByUsername(username);
-            if (user == null) {
-                System.out.println("user not found with the provided username " + user.toString());
-                return null;
-            }
-
-            System.out.println(" user from username " + user.toString());
-            return new CustomUserDetails(user, getAuthorities(user));
-        } catch (Exception e){
-            throw new UsernameNotFoundException("User not found");
-        }*/
 
         try {
             User user = userRepository.findByUsername(username);
@@ -57,10 +52,11 @@ public class SSUserDetailService implements UserDetailsService {
         }
     }
 
-    private Set<GrantedAuthority> getAuthorities(User user){
-        Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
-        for(Role role : user.getRoles())
-        {
+
+    private Set<GrantedAuthority> getAuthorities(User user)
+    {
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for(Role role : user.getRoles()){
             System.out.println("roles are " + role.getRole());
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getRole());
             authorities.add(grantedAuthority);

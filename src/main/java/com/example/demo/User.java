@@ -1,7 +1,7 @@
 package com.example.demo;
 
 
-import javax.management.relation.Role;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -12,17 +12,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "pwd")
+    @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name="firstname")
     private String firstname;
 
+    @Column(name="lastName")
     private String lastName;
 
+    @Column(name = "enabled")
     private boolean enabled;
 
+    @Column(name = "username")
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
